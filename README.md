@@ -7,6 +7,9 @@ Encrypted tunneling technologies provide privacy protection while concealing fin
 The dataset used in this research contains tunnel traffic constructed from six different tunneling technologies, encompassing various sequential SSH behaviors with implicit transitions.
 You can download the dataset from the following Google Drive link: [Download Link](https://drive.google.com/drive/folders/1w47_5o_xvA-gDinlIw7pJ90ElpL7oIuy?usp=sharing)
 
+<img width="1198" height="376" alt="image" src="https://github.com/user-attachments/assets/942c27ac-5089-4b8c-b833-d1ec3998df68" />
+
+
 ## 🔍 Overview
 SSH-Tracker implements a cascaded architecture with the following core mechanisms:
 1. **Hierarchical Encoder**: Employs an attention residual hierarchical GRU with adaptive gating to capture both long-range temporal dependencies and local transition patterns.
