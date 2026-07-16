@@ -9,6 +9,37 @@ You can download the dataset from the following Google Drive link: [Download Lin
 
 <img width="1198" height="376" alt="image" src="https://github.com/user-attachments/assets/942c27ac-5089-4b8c-b833-d1ec3998df68" />
 
+## Dataset Description
+
+### Overview
+
+This dataset was constructed for fine-grained SSH behavior analysis in encrypted tunnel traffic. It contains continuous encrypted traffic sessions collected under six tunneling technologies: VMess, TUIC, Trojan, Hysteria2, HTTP, and AnyTLS. The dataset supports the joint evaluation of sequential SSH behavior recognition and packet-level transition-boundary localization.
+
+Each sample represents one continuous SSH session transmitted through an encrypted tunnel. A sample contains multiple consecutive SSH behaviors rather than a single flow-level activity label. The SSH connection-establishment stage is excluded from the analyzed traffic sequence so that the data represent the subsequent behavioral execution stage.
+
+### SSH Behavior Taxonomy
+
+The dataset defines ten fine-grained SSH behavior categories: System Status, Network Topology, File System Enumeration, Configuration Access, Data Exfiltration, Tool Implantation, Bulk Output, Resource Monitoring, Log Auditing, and Interactive Session. These categories cover lightweight administrative querying, sustained data operations, and long-duration monitoring or interactive activities.
+
+Each session is constructed with a predefined number of behaviors, ranging from two to five. For a given behavior-count setting, distinct behavior categories are sampled without replacement from the ten defined categories, and their execution order is randomized. This procedure avoids repeated behavior labels within an individual session while producing diverse ordered behavior compositions across the dataset.
+
+### Collection and Annotation Protocol
+
+For each tunneling technology, SSH traffic was collected after an encrypted tunnel had been established. Every sample corresponds to one independently collected, persistent SSH session. The behavior implementations use common SSH commands associated with the defined categories. Their durations are determined by actual command execution rather than an artificially fixed duration. Consecutive behaviors are separated by randomized waiting periods. These intervals may contain system-generated packets and tunnel-related background traffic, which are retained in the captured trace to preserve realistic temporal variation.
+
+Behavior transitions are recorded by the collection automation script and verified using command-output records and system echo responses. The released annotations provide packet-level behavior labels. 
+
+### Data Split and Independence
+
+Training and testing data are split at the complete SSH-session level, with an approximately 8:2 ratio. The split is performed independently within each tunneling technology and each two- to five-behavior setting. No SSH session is duplicated across the training and testing subsets, and no continuous session is divided into multiple samples.
+
+The repository provides the distribution of sessions across tunneling technologies, behavior-count settings, and data splits. The behavior categories are selected through the randomized sampling procedure described above.
+
+### Session Duration and Packet Counts
+
+Session duration is measured over the analyzed packet sequence as the cumulative inter-arrival time of its packets. Packet count is the number of packets in the same analyzed sequence. Both quantities vary across sessions because SSH commands, behavior compositions, randomized waiting periods, and tunneling technologies produce heterogeneous traffic durations and packet volumes. Consequently, the number of behaviors in a session indicates its semantic composition but does not uniquely determine its duration or packet count.
+
+
 
 ## 🔍 Overview
 SSH-Tracker implements a cascaded architecture with the following core mechanisms:
