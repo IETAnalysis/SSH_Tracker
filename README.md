@@ -7,7 +7,43 @@ Encrypted tunneling technologies provide privacy protection while concealing fin
 The dataset used in this research contains tunnel traffic constructed from six different tunneling technologies, encompassing various sequential SSH behaviors with implicit transitions.
 You can download the dataset from the following Google Drive link: [Download Link](https://drive.google.com/drive/folders/1w47_5o_xvA-gDinlIw7pJ90ElpL7oIuy?usp=sharing)
 
-<img width="1198" height="376" alt="image" src="https://github.com/user-attachments/assets/942c27ac-5089-4b8c-b833-d1ec3998df68" />
+## Dataset Flow Distribution
+
+This table reports the distribution of complete encrypted tunnel traffic flows across behavioral composition levels and tunneling technologies.
+Each traffic flow corresponds to one SSH session after connection establishment. Training and test subsets are split at the complete-flow level without session overlap.
+
+| Tunneling technology | 2-Behavior train | 2-Behavior test | 3-Behavior train | 3-Behavior test | 4-Behavior train | 4-Behavior test | 5-Behavior train | 5-Behavior test | Overall train | Overall test | Total |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| VMess | 1006 | 211 | 1056 | 219 | 1118 | 218 | 1148 | 217 | 4328 | 865 | 5193 |
+| TUIC | 1176 | 210 | 1169 | 203 | 1112 | 200 | 1186 | 201 | 4643 | 814 | 5457 |
+| Trojan | 1169 | 210 | 1007 | 213 | 1069 | 202 | 1077 | 219 | 4322 | 844 | 5166 |
+| Hysteria2 | 1174 | 211 | 1032 | 202 | 1059 | 219 | 1064 | 204 | 4329 | 836 | 5165 |
+| HTTP | 1012 | 201 | 1008 | 216 | 1025 | 201 | 1139 | 216 | 4184 | 834 | 5018 |
+| AnyTLS | 1045 | 205 | 1034 | 209 | 1076 | 201 | 1168 | 219 | 4323 | 834 | 5157 |
+| **Total** | **6582** | **1248** | **6306** | **1262** | **6459** | **1241** | **6782** | **1276** | **26129** | **5027** | **31156** |
+
+## Per-class Behavior-Segment Distribution
+
+This table reports the realized class distribution in the mixed-traffic SSH dataset.
+Each count denotes one labeled behavior segment, rather than a packet or a traffic flow.
+The counts aggregate the 2-, 3-, 4-, and 5-behavior settings across six tunneling technologies.
+For every record, the ground-truth `flow_label` sequence was verified against the contiguous segments encoded by `packet_label`.
+
+| ID | Functional category | Behavior | Train segments | Test segments | Total segments | Share of total |
+|---:|---|---|---:|---:|---:|---:|
+| 0 | Administrative Querying | System Status | 9242 | 1756 | 10998 | 10.05% |
+| 1 | Administrative Querying | Network Topology | 9237 | 1842 | 11079 | 10.12% |
+| 2 | Administrative Querying | File System Enumeration | 9201 | 1764 | 10965 | 10.02% |
+| 3 | Administrative Querying | Configuration Access | 9206 | 1773 | 10979 | 10.03% |
+| 4 | Data Manipulation | Data Exfiltration | 9179 | 1754 | 10933 | 9.99% |
+| 5 | Data Manipulation | Tool Implantation | 9143 | 1732 | 10875 | 9.94% |
+| 6 | Data Manipulation | Bulk Output | 9142 | 1744 | 10886 | 9.95% |
+| 7 | Persistent Monitoring | Resource Monitoring | 9156 | 1770 | 10926 | 9.98% |
+| 8 | Persistent Monitoring | Log Auditing | 9230 | 1772 | 11002 | 10.05% |
+| 9 | Persistent Monitoring | Interactive Session | 9092 | 1719 | 10811 | 9.88% |
+|  | **All behaviors** |  | **91828** | **17626** | **109454** | **100.00%** |
+
+The table covers 26,129 training flows and 5,027 test flows, for 31,156 flows in total.
 
 ## Dataset Description
 
