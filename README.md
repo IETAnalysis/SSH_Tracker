@@ -88,7 +88,6 @@ SSH-Tracker implements a cascaded architecture with the following core mechanism
 
 ## 📂 Project Structure & File Description
 ```text
-├── models.py          # Core neural network architectures
 ├── train.py           # Joint training loop and loss functions
 ├── evaluate.py        # Evaluation metrics and inference logic
 └── README.md          # Project documentation
